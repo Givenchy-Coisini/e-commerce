@@ -34,3 +34,9 @@
 ![image-20200717184626056](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200717184626056.png)
 
 ### 1.Vue基础重新学习
+
+![image-20200717235349904](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200717235349904.png)
+
+![image-20200717235439944](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200717235439944.png)
+
+![image-20200718000333031](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200718000333031.png)

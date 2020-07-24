@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h1>简单计算器</h1>
+        </div>
+        <div>
+            <label for="a">数值A:</label>
+            <input type="text" name="" id="a" v-model="number1">
+        </div>
+        <div>
+            <label for="b">数值B:</label>
+            <!-- "for" 属性可把 label 绑定到另外一个元素。请把 "for" 属性的值设置为相关元素的 id 属性的值。 -->
+            <input type="text" name="" id="b" v-model="number2" @keyup.enter="add">
+            <!-- 按键事件一般都在表单中 -->
+            <!-- input 的name是名称  value是值 -->
+        </div>
+        <button @click="add()">计算</button>
+        <div>
+            计算结果：{{res}}
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                number1:'',
+                number2:'',
+                res:''
+            },
+            methods: {
+                add() {
+                  this.res=parseInt(this.number1)+parseInt(this.number2)
+                  this.number1=this.number2=''
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

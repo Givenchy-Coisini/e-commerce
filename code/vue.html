@@ -1,23 +1,67 @@
 <!-- 第三集 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
     <title>Document</title>
 </head>
+
 <body>
     <div id="app">
-        {{msg}}
+        <div>{{number}}</div>
+        <div @click="add0">
+            <button @click.stop="add">加1</button>
+        </div>
+        <div>
+            <a href="http://www.baidu.com" @click.prevent="zuzhi">百度</a>
+        </div>
+        <button @click="handler(123, $event)">anniu</button>
     </div>
 </body>
 <script>
+    /*
+    vue的基本使用步骤：
+    1.需要提供标签用于填充数据
+    2.引入vue.js文件库
+    3.可以用vue的语法功能了
+    4.把vue提供的数据填充到标签里面去
+    */
     const vm = new Vue({
-        el:'#app',
-        data:{
-            msg:'hello vue'
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            number: 0
+        },
+        methods: {
+            /**
+             * 如果事件直接绑定函数名称，那么默认会传递事件 对象作为事件函数的第一个参数
+             * 如果事件绑定的是函数的调用，那么事件对象必须作为最后一个参数显示传递，并且事件对象的名称必须是
+             * $event
+             * 
+            */add0() {
+                this.number++
+            },
+            add(event) {//默认第一个参数是event
+                // this.number++
+                // event.stopPropagation()//原生阻止冒泡
+            },
+            handler(p, event) {//形参
+                console.log('tag', p)
+                console.log(event.target.innerHTML)
+            },
+            zuzhi(event) {
+                event.preventDefault();
+            }
         }
+
     })
 </script>
+
 </html>

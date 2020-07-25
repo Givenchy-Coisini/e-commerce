@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <div>
+           {{msg}}
+       </div>
+        <input type="text" v-bind:value="msg" @input="handle">
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+               msg:'hello'
+            },
+            methods: {
+                /**
+                 * v-bind:是属性用data中的数据代替
+                 * handle处理函数是先拿到输入框的值，在把值赋给result 然后再把数据中的msg给改变一下
+                */
+                handle(event){
+                    let result = event.target.value
+                    this.msg=result
+                }
+            },
+        })
+    </script>
+</body>
+</html>

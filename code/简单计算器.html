@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <div>
-            <h1>简单计算器</h1>
+            <h1>简单s计算器</h1>
         </div>
         <div>
             <label for="a">数值A:</label>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <script>
-        const vm = new Vue({
+        const vm = new Vue({//v-model的含义：我理解的 可以用页面去影响data中的数据,然后用事件去修改data中的数据,然后在页面上渲染
             el: '#app',
             data: {
                 number1:'',

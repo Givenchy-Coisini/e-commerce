@@ -377,7 +377,259 @@
     
     
     - 属性绑定
+    
+    ```js
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Document</title>
+    </head>
+    
+    <body>
+        <div id="app">
+            <a v-bind:href="url">百度</a>
+        </div>
+        <script>
+              //v-bind能够很好地去动态的改变属性
+            const vm = new Vue({
+                el: '#app',
+                data: {
+                    url: 'http://www.baidu.com'
+                },
+                methods: {
+    
+                },
+            })
+        </script>
+    </body>
+    
+    </html>
+    ```
+    
+    - 双向数据绑定原理
+    
+    ```js
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+           <div>
+               {{msg}}
+           </div>
+            <input type="text" v-bind:value="msg" @input="handle">
+        </div>
+        <script>
+            const vm = new Vue({
+                el: '#app',
+                data: {
+                   msg:'hello'
+                },
+                methods: {
+                    /**
+                     * v-bind:是属性用data中的数据代替
+                     * handle处理函数是先拿到输入框的值，在把值赋给result 然后再把数据中的msg给改变一下
+                    */
+                    handle(event){
+                        let result = event.target.value
+                        this.msg=result
+                    }
+                },
+            })
+        </script>
+    </body>
+    </html>
+    ```
+    
     - 样式绑定
+    
+    ```js
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            .active{
+                border: 1px red solid;
+                width: 100px;
+                height: 100px;
+            }
+            .error{
+                background-color: aqua;
+            }
+    
+            .test{
+                color: blue;
+            }
+        </style>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <div :class="[activeClass,errorClass,{test:isTest}]">
+                {{msg}}
+                <!-- v-bind绑定class样式为active的样式 用isActive 在事件中改变其值来影响
+                经常用于tabbar切换  给定一个样式  在满足某条件的时候会触发样式改变
+                -->
+            </div>
+            <button @click="handle">qiehuan</button>
+         <script>
+             /*
+            对象绑定和数组绑定可以结合使用
+            class绑定的值可以简化操作
+            默认的class如何处理   默认的class会被保留
+             */
+             const vm = new Vue({
+                 el: '#app',
+                 data: {
+                    msg:'hello',
+                    isTest:true,
+                    activeClass:'active',//数组的用法  这里的值是css中的
+                    errorClass:'error'
+                 },
+                 methods: {
+                     /**
+                      * v-bind:是属性用data中的数据代替
+                      * handle处理函数是先拿到输入框的值，在把值赋给result 然后再把数据中的msg给改变一下
+                      * class样式处理  对象语法：<div v-bind:class="{active:isActive}"></div>
+                      * 数组语法:<div v-bind:class="[activeClass,errorClass]"></div>
+                      * 可以设置当页面渲染的时候 这个样式显示 当输入密码的时候另外一个样式显示  掘金就是
+                      */
+                     handle(event){
+                     //控制isActive在true和false之间切换
+                     this.isTest=!this.isTest
+                     this.activeClass=this.errorClass=''
+                     }
+                 },
+             })
+         </script>
+    </body>
+    </html>
+    ```
+    
+    
+    
     - 分支循环结构
     
+    ```js
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            [v-cloak]{
+                display: none;
+            }
+        </style>
+        <title>Document</title>
+    </head>
     
+    <body>
+        <div id="app">
+            <div v-cloak>
+                {{content}}
+            </div>
+            <ul>
+                <li v-for="item in fruits">{{item}}</li>
+            </ul>
+        </div>
+        <script>
+            /**
+             *分支结构的时候  v-if 和v-show区别：v-if控制（DOM元素的增加和删除）是否渲染到页面 变化就很小了不频繁渲染，v-show控制元素是否显示(已经渲染到了页面)频繁的显示和隐藏
+             * 循环结构
+            */
+            const vm = new Vue({
+                el: '#app',
+                data: {
+                    fruits: ['apple', 'orange', 'bannan'],
+                    content:'水果列表'
+                },
+                methods: {
+    
+                },
+            })
+        </script>
+    </body>
+    
+    </html>
+    ```
+
+- forin  循环以及v-if 和v-for一起使用
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-cloak>
+            {{content}}
+        </div>
+        <ul>
+            <li v-for="item in fruits">{{item}}</li>
+        </ul>
+        <!-- 遍历对象 -->
+        <div v-if="value==18" v-for="(value,key,index) in Obj">
+            {{value+'---'+key+'----'+index}}
+        </div>
+        <!-- v-if 满足某些条件的时候才会进行遍历 -->
+    </div>
+    <script>
+        /**
+         * 循环结构
+         * 原生js遍历对象
+        */
+        var Obj = {
+            uname: 'lisi',
+            cname: '李四',
+            age: 18
+        }
+        for (var key in Obj) {//for in遍历对象
+            console.log(key,Obj[key])
+        }
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                fruits: ['apple', 'orange', 'bannan'],
+                content: '水果列表',
+                Obj: {
+                    uname: 'lisi',
+                    cname: '李四',
+                    age: 18
+                }
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>
+```
+

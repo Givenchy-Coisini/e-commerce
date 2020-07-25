@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .active{
+            border: 1px red solid;
+            width: 100px;
+            height: 100px;
+        }
+        .error{
+            background-color: aqua;
+        }
+
+        .test{
+            color: blue;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div :class="[activeClass,errorClass,{test:isTest}]">
+            {{msg}}
+            <!-- v-bind绑定class样式为active的样式 用isActive 在事件中改变其值来影响
+            经常用于tabbar切换  给定一个样式  在满足某条件的时候会触发样式改变
+            -->
+        </div>
+
+
+        <button @click="handle">qiehuan</button>
+     <script>
+         /*
+        对象绑定和数组绑定可以结合使用
+        class绑定的值可以简化操作
+        默认的class如何处理   默认的class会被保留
+         */
+         const vm = new Vue({
+             el: '#app',
+             data: {
+                msg:'hello',
+                isTest:true,
+                activeClass:'active',//数组的用法  这里的值是css中的
+                errorClass:'error'
+             },
+             methods: {
+                 /**
+                  * v-bind:是属性用data中的数据代替
+                  * handle处理函数是先拿到输入框的值，在把值赋给result 然后再把数据中的msg给改变一下
+                  * class样式处理  对象语法：<div v-bind:class="{active:isActive}"></div>
+                  * 数组语法:<div v-bind:class="[activeClass,errorClass]"></div>
+                  * 可以设置当页面渲染的时候 这个样式显示 当输入密码的时候另外一个样式显示  掘金就是
+                  */
+                 handle(event){
+                 //控制isActive在true和false之间切换
+                 this.isTest=!this.isTest
+                 this.activeClass=this.errorClass=''
+                 }
+             },
+         })
+     </script>
+</body>
+</html>

@@ -295,6 +295,8 @@
         <button @click="say('hi',$event)">Say Hi</button>
         //$event 是事件对象 是一个固定的写法 最后一个参数是事件对象
         
+        ```
+
   const vm = new Vue({
                 el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
             data: {//模型数据 对象
@@ -374,10 +376,11 @@
           >   Vue.config.keyCodes.aaa=65
           >
           >   v-on:keyup.aaa="handle" //aaa也可以直接写成65
+
     
-    
+
     - 属性绑定
-    
+
     ```js
     <!DOCTYPE html>
     <html lang="en">
@@ -409,9 +412,9 @@
     
     </html>
     ```
-    
+
     - 双向数据绑定原理
-    
+
     ```js
     <!DOCTYPE html>
     <html lang="en">
@@ -449,9 +452,9 @@
     </body>
     </html>
     ```
-    
+
     - 样式绑定
-    
+
     ```js
     <!DOCTYPE html>
     <html lang="en">
@@ -517,11 +520,11 @@
     </body>
     </html>
     ```
+
     
-    
-    
+
     - 分支循环结构
-    
+
     ```js
     <!DOCTYPE html>
     <html lang="en">
@@ -633,3 +636,368 @@
 </html>
 ```
 
+##### 基础案例
+
+- ​    1.实现静态ui效果
+
+  ​     \* 用传统的方式实现标签和结构样式
+
+  ​     \* 2.基于数据重构ui效果
+
+  ​     \* 将静态的结构和样式重构为基于Vue模板语法的形式
+
+  ​     \* 处理事件绑定和控制逻辑
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .tab ul {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab ul li {
+            box-sizing: border-box;
+            padding: 0;
+            float: left;
+            width: 100px;
+            height: 45px;
+            line-height: 45px;
+            list-style: none;
+            text-align: center;
+            border-top: 1px solid blue;
+            border-right: 1px blue solid;
+            cursor: pointer;
+        }
+
+        .tab ul li:first-child {
+            border-left: 1px solid blue;
+        }
+
+        .tab ul li.active {
+            background-color: aqua;
+        }
+
+        .tab div {
+            width: 500px;
+            height: 300px;
+            display: none;
+            text-align: center;
+            font-size: 30px;
+            line-height: 300px;
+            border: 1px blue solid;
+            border-top: 0px;
+        }
+        .tab div.current{
+            display: block;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <li @click="change(index)" :class='currentindex===index?"active":""' v-for="(item,index) in list" :key="item.id">
+                    {{item.title}}</li>
+            </ul>
+            <div :class='currentindex===index?"current":""'v-for="(item,index) in list" :key="item.id">
+                {{item.content}}
+                <!-- 这里如果是标签的话 比如：img  src 如果属性值是data中的数据的时候 要记得加v-bind -->
+            </div>
+        </div>
+    </div>
+    <script>
+        /**
+         * 1.实现静态ui效果
+         * 用传统的方式实现标签和结构样式
+         * 2.基于数据重构ui效果
+         * 将静态的结构和样式重构为基于Vue模板语法的形式
+         * 处理事件绑定和控制逻辑
+        */
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                currentindex: 0,//选项卡当前的索引
+                list: [{
+                    id: 1,
+                    title: 'apple',
+                    content: '苹果'
+                }, {
+                    id: 2,
+                    title: 'orange',
+                    content: '橘子'
+
+                }, {
+                    id: 3,
+                    title: 'lemo',
+                    content: '柠檬'
+                }]
+            },
+            methods: {
+                change(index){
+                    //在这里实现选项卡切换逻辑  本质就是操作类名
+                    //如何切换类名：currentIndex
+                    this.currentindex=index
+
+                }
+
+            },
+        })
+    </script>
+</body>
+</html>
+```
+
+##### vue常用特性
+
+- 表单操作
+
+```js
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form action="http://itcast.cn">
+            <div>
+                <span>姓名:</span>
+                <span>
+                    <!-- 表单修饰符 -->
+                    <!-- number 转化为数值
+                    trim：去掉开始和结尾的空格
+                    lazy：将input事件切换为change事件
+                    input事件是只要有内容发生变化就会触发
+                    change是失去焦点才会触发
+                    在v-model后面加
+                    -->
+
+                    <input type="text" v-model="uname">
+                </span>
+            </div>
+            <div>
+                <span>性别:</span>
+                <span>
+                    <!-- value =1 的时候 选择的是男 -->
+                    <input type="radio" id="male" value="1" v-model="gender">
+                    <label for="male">男</label>
+                    <input type="radio" id="female" value="2" v-model="gender">
+                    <label for="female">女</label>
+                </span>
+            </div>
+            <div>
+                <span>爱好:</span>
+                <span>
+                    <input type="checkbox" name="" id="ball" value="1" v-model="hobby">
+                    <label for="ball">篮球</label>
+                    <input type="checkbox" name="" id="sing" value="2" v-model="hobby">
+                    <label for="ball">唱歌</label>
+                    <input type="checkbox" name="" id="code" value="3" v-model="hobby">
+                    <label for="ball">写代码</label>
+                </span>
+            </div>
+            <div>
+                <span>职业:</span>
+                <select name="" v-model="occupation" multiple>
+                    <option value="0">请选择职业...</option>
+                    <option value="1">教师</option>
+                    <option value="2">软件工程师</option>
+                    <option value="3">讲师</option>
+
+                </select>
+            </div>
+            <div>
+                <span>个人简历:</span>
+                <textarea name="" id="" cols="30" rows="10" v-model="desc"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="提交" @click.prevent="handle">
+            </div>
+
+        </form>
+    </div>
+</body>
+<script>
+
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            uname: 'lisi',
+            gender: '1',
+            hobby: ['1', '2'],
+            occupation: ['1', '2'],
+            desc: 'hdhfj'
+        },
+        methods: {
+            handle() {
+                console.log(this.uname + this.gender)
+                console.log(this.hobby.toString())
+                console.log(this.occupation)
+            }
+        }
+
+    })
+</script>
+
+</html>
+```
+
+- 自定义指令
+  -  为什么使用自定义指令？--->内置指令不满足要求
+
+```js
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-color="msg">
+        <input type="text" v-focus>
+    </div>
+</body>
+<script>
+    /**
+    自定义指令
+    */
+    Vue.directive('focus', {
+        inserted(el) {
+            //el:表示指令所绑定的元素
+            el.focus()
+        }
+    })
+    // Vue.directive('color', {
+    //     bind(el, binding) {
+    //         //el:表示指令所绑定的元素
+    //         // el.focus()
+    //         //根据指令的参数 设置背景颜色
+    //         console.log(binding.value)
+    //         el.style.backgroundColor = binding.value
+    //     }
+    // })
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            number: 0,
+            msg: 'yellow'//也可以是一个对象
+        },
+        methods: {
+
+
+        },
+        //局部指令  只能在本组件中使用
+        directives: {
+            color: {
+                bind(el, binding) {
+                    //el:表示指令所绑定的元素
+                    // el.focus()
+                    //根据指令的参数 设置背景颜色
+                    console.log(binding.value)
+                    el.style.backgroundColor = binding.value
+                }
+            },
+            //可以定义多个指令
+        }
+
+    })
+</script>
+
+</html>
+```
+
+- 计算属性
+  - 为什么要使用计算属性：表达式的计算逻辑可能会比较复杂，使用计算属性可以使模板内容更加简洁
+
+```js
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <div>{{reverseString}}</div>
+        <div>{{reverseString}}</div>
+        <div>{{reverseMessage()}}</div>
+        <div>{{reverseMessage()}}</div>
+    </div>
+</body>
+<script>
+
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            msg: 'hello'
+        },
+        computed: {//计算属性  根据data 的数变化的
+            reverseString() {
+                console.log('conputed')
+                return this.msg.split('').reverse().join('')  //return 必须要加
+                // split分隔字符串  reverse反转  join拼接字符串
+            }
+        },
+        //计算属性和方法的区别：计算属性是基于他们的依赖(data中的数据)进行缓存的  方法中不存在缓存 计算属性节省性能
+        methods: {
+            //方法是每调用一次 执行一次函数
+            reverseMessage: function () {
+                console.log('methods')
+                return this.msg.split('').reverse().join('')
+            }
+        }
+
+    })
+</script>
+
+</html>
+```
+
+
+
+- 过滤器
+- 侦听器
+
+![image-20200728180341835](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200728180341835.png)
+
+
+
+- 声明周期
+
+  

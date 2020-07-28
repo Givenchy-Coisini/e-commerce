@@ -1,0 +1,64 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-color="msg">
+        <input type="text" v-focus>
+    </div>
+</body>
+<script>
+    /**
+    自定义指令
+    */
+    Vue.directive('focus', {
+        inserted(el) {
+            //el:表示指令所绑定的元素
+            el.focus()
+        }
+    })
+    // Vue.directive('color', {
+    //     bind(el, binding) {
+    //         //el:表示指令所绑定的元素
+    //         // el.focus()
+    //         //根据指令的参数 设置背景颜色
+    //         console.log(binding.value)
+    //         el.style.backgroundColor = binding.value
+    //     }
+    // })
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            number: 0,
+            msg: 'yellow'//也可以是一个对象
+        },
+        methods: {
+
+
+        },
+        //局部指令
+        directives: {
+            color: {
+                bind(el, binding) {
+                    //el:表示指令所绑定的元素
+                    // el.focus()
+                    //根据指令的参数 设置背景颜色
+                    console.log(binding.value)
+                    el.style.backgroundColor = binding.value
+                }
+            },
+            //可以定义多个指令
+        }
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,52 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <div>{{reverseString}}</div>
+        <div>{{reverseString}}</div>
+        <div>{{reverseMessage()}}</div>
+        <div>{{reverseMessage()}}</div>
+    </div>
+</body>
+<script>
+
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            msg: 'hello'
+        },
+        computed: {//计算属性  根据data 的数变化的
+            reverseString() {
+                console.log('conputed')
+                return this.msg.split('').reverse().join('')  //return 必须要加
+                // split分隔字符串  reverse反转  join拼接字符串
+            }
+        },
+        //计算属性和方法的区别：计算属性是基于他们的依赖(data中的数据)进行缓存的  方法中不存在缓存 计算属性节省性能
+        methods: {
+            //方法是每调用一次 执行一次函数
+            reverseMessage: function () {
+                console.log('methods')
+                return this.msg.split('').reverse().join('')
+            }
+        }
+
+    })
+</script>
+
+</html>

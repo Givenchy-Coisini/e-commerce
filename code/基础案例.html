@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .tab ul {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab ul li {
+            box-sizing: border-box;
+            padding: 0;
+            float: left;
+            width: 100px;
+            height: 45px;
+            line-height: 45px;
+            list-style: none;
+            text-align: center;
+            border-top: 1px solid blue;
+            border-right: 1px blue solid;
+            cursor: pointer;
+        }
+
+        .tab ul li:first-child {
+            border-left: 1px solid blue;
+        }
+
+        .tab ul li.active {
+            background-color: aqua;
+        }
+
+        .tab div {
+            width: 500px;
+            height: 300px;
+            display: none;
+            text-align: center;
+            font-size: 30px;
+            line-height: 300px;
+            border: 1px blue solid;
+            border-top: 0px;
+        }
+        .tab div.current{
+            display: block;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <li @click="change(index)" :class='currentindex===index?"active":""' v-for="(item,index) in list" :key="item.id">
+                    {{item.title}}</li>
+            </ul>
+            <div :class='currentindex===index?"current":""'v-for="(item,index) in list" :key="item.id">
+                {{item.content}}
+                <!-- 这里如果是标签的话 比如：img  src 如果属性值是data中的数据的时候 要记得加v-bind -->
+            </div>
+        </div>
+    </div>
+    <script>
+        /**
+         * 1.实现静态ui效果
+         * 用传统的方式实现标签和结构样式
+         * 2.基于数据重构ui效果
+         * 将静态的结构和样式重构为基于Vue模板语法的形式
+         * 处理事件绑定和控制逻辑
+        */
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                currentindex: 0,//选项卡当前的索引
+                list: [{
+                    id: 1,
+                    title: 'apple',
+                    content: '苹果'
+                }, {
+                    id: 2,
+                    title: 'orange',
+                    content: '橘子'
+
+                }, {
+                    id: 3,
+                    title: 'lemo',
+                    content: '柠檬'
+                }]
+            },
+            methods: {
+                change(index){
+                    //在这里实现选项卡切换逻辑  本质就是操作类名
+                    //如何切换类名：currentIndex
+                    this.currentindex=index
+                }
+
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -992,12 +992,213 @@
 
 
 - 过滤器
+
+![image-20200728184215482](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200728184215482.png)
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <div>{{msg | upper}}</div>
+        <!-- 前面处理的结果作为下一个的输入值 -->
+        <div>{{msg | upper | lower}}</div>
+    </div>
+</body>
+<script>
+    /*
+   过滤器:就是在处理数据 -->格式化数据
+   插值表达式 和属性绑定
+    */
+    Vue.filter('upper', function (val) {
+        //upper 是过滤器的名字，val是我们要处理的数据
+        return val.charAt(0).toUpperCase() + val.slice(1)
+        // charAt(0)首字符  大写  slice(1)从第二个字母到最后
+    })
+    Vue.filter('lower', function (val) {
+        //upper 是过滤器的名字，val是我们要处理的数据
+        return val.charAt(0).toLowerCase() + val.slice(1)
+        // charAt(0)首字符  大写  slice(1)从第二个字母到最后
+    })
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            msg: ''
+        },
+        methods: {
+
+        },
+        filters:{//局部  只有在本组件中可以使用
+            upper:function(){
+
+            }
+        }
+
+    })
+</script>
+
+</html>
+```
+
+
+
 - 侦听器
 
 ![image-20200728180341835](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200728180341835.png)
 
+```js
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <span>
+                名:
+            </span>
+            <span>
+                <input type="text" v-model="firstName">
+            </span>
+        </div>
+        <div>
+            <span>姓:</span>
+            <span>
+                <input type="text" v-model="lastName">
+            </span>
+        </div>
+        <div>{{fullName}}</div>
+    </div>
+</body>
+<script>
+
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            firstName: 'Jim',
+            lastName: 'Green',
+            fullName: 'Jim Green'
+        },
+       watch: {//监听器  当数据发生变化的时候 他也跟着变化
+             firstName(val) {//val是新的值
+                this.fullName = val + '  ' + this.lastName
+            },
+            lastName(val) {
+                this.fullName = this.firstName + '  ' + val
+            }
+        },
+        computed: {//计算属性也能实现
+            fullName() {
+                return this.firstName + ' ' + this.lastName
+            }
+        },
+        methods: {
+
+        }
+
+    })
+</script>
+
+</html>
+```
+
 
 
 - 声明周期
+
+  ```js
+  <!-- 第三集 -->
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <title>Document</title>
+  </head>
+  
+  <body>
+      <div id="app">
+          <div>{{msg}}</div>
+          <button @click="update">更新</button>
+          <button @click="destory">销毁</button>
+      </div>
+  </body>
+  <script>
+      /*
+      Vue实例生命周期的主要阶段：
+      挂载（初始化相关属性）
+      1.beforeCreate
+      2.created
+      3.beforeMount
+      4.mounted
+      更新
+      1.beforeUpdate
+      2.update
+      销毁
+      1.beforeDestroy
+      2.destroyed
+     
+      */
+      const vm = new Vue({
+          el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+          data: {//模型数据 对象
+              msg: '生命周期'
+          },
+          methods: {
+              update() {
+                  this.msg = 'hello'
+              },
+              destory(){
+                  this.$destroy()
+              }
+          },
+          beforeCreate() {
+              console.log('beforeCreate')
+          },
+          created() {
+              console.log('created')
+          },
+          beforeMount() {
+              console.log('beforeMount')
+          },
+          mounted() {//初始化完成  模板内容渲染完成,请求后台 填充数据
+              console.log('mounted')
+          },
+          beforeUpdate() {
+              console.log('beforeUpdate')
+          },
+          updated() {
+              console.log('updated')
+          },
+          beforeDestroy() {
+              console.log('beforeDestroy')
+          },
+          destroyed() {
+              console.log('destroyed')
+          },
+  
+      })
+  </script>
+  
+  </html>
+  ```
 
   

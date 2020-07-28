@@ -1,0 +1,61 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <label for="user">用户名:</label>
+        <input type="text" id="user" v-model.lazy="username">
+        <span>{{tip}}</span>
+    </div>
+</body>
+<script>
+    /*
+    1.用户名的验证
+    2.通过v-model 实现数据绑定
+    3.需要提供提示信息
+    4.需要监听器监听输入信息的变化
+    5.需要修改触发的事件
+    */
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            username: '',
+            tip: ''
+        },
+        watch: {
+            // 采用侦听器箭筒用户名的变化
+            // 调用后台接口进行验证
+            // 根据验证的结果进行跳转提示信息
+            username(newVal) {
+                // 调用后台接口进行用户名的验证与合法性
+                this.checkName(newVal)
+                // 提示信息
+                this.tip="正在验证..."
+            }
+        },
+        methods: {
+            checkName(username) {
+                // 实现接口调用  可以使用定时任务的方式进行模拟接口调用
+                let that=this
+                setTimeout(function() {
+                    if (username == 'admin') {
+                        that.tip='用户名已经存在，请更换'
+                    }else{
+                        that.tip='用户名可以使用'
+                    }
+                }, 2000)
+            }
+        }
+
+    })
+</script>
+
+</html>

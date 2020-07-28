@@ -1,0 +1,76 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <button @click="update">更新</button>
+        <button @click="destory">销毁</button>
+    </div>
+</body>
+<script>
+    /*
+    Vue实例生命周期的主要阶段：
+    挂载（初始化相关属性）
+    1.beforeCreate
+    2.created
+    3.beforeMount
+    4.mounted
+    更新
+    1.beforeUpdate
+    2.update
+    销毁
+    1.beforeDestroy
+    2.destroyed
+   
+    */
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            msg: '生命周期'
+        },
+        methods: {
+            update() {
+                this.msg = 'hello'
+            },
+            destory(){
+                this.$destroy()
+            }
+        },
+        beforeCreate() {
+            console.log('beforeCreate')
+        },
+        created() {
+            console.log('created')
+        },
+        beforeMount() {
+            console.log('beforeMount')
+        },
+        mounted() {//初始化完成  模板内容渲染完成,请求后台 填充数据
+            console.log('mounted')
+        },
+        beforeUpdate() {
+            console.log('beforeUpdate')
+        },
+        updated() {
+            console.log('updated')
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy')
+        },
+        destroyed() {
+            console.log('destroyed')
+        },
+
+    })
+</script>
+
+</html>

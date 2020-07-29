@@ -1,0 +1,222 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .grid {
+            margin: auto;
+            width: 500px;
+            text-align: center;
+        }
+
+        .grid table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .grid th,
+        td {
+            padding: 10px;
+            border: 1px dashed orange;
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .grid th {
+            background-color: orange;
+        }
+
+        .grid .book {
+            padding-bottom: 10px;
+            padding-top: 5px;
+            background-color: #f3dcab;
+        }
+
+        .grid .totle {
+            height: 30px;
+            line-height: 30px;
+            background-color: #f3dcab;
+            border-top: 1px solid #f3dcab;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grid">
+            <div>
+                <h1>图书管理</h1>
+                <div class="book">
+                    <div>
+                        <label for="id">编号:</label>
+                        <input type="text" name="" id="id" v-model="id" :disabled="flag" v-focus>
+                        <label for="name">名称:</label>
+                        <input type="text" name="" id="name" v-model="name">
+                        <button @click="handle" :disabled="submitFlag">提交</button>
+                    </div>
+                </div>
+                <div class="totle">
+                    <span>图书总数:</span>
+                    <span>{{total}}</span>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in books" :key="item.id">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>
+                            <a href="" @click.prevent="change(item.id)">修改</a>
+                            <span>|</span>
+                            <a href="" @click.prevent="del(item.id)">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    /*
+   数组：
+   1.变异数组(修改原有数据) push pop shift unishift splice sort reverse  直接就是响应式的
+   2.替换数组(生成新的数组 不会影响原始的数据) filter concat slice  需要给原始的数组进行赋值
+    */
+    Vue.directive('focus', {
+        inserted: function (el) {
+            el.focus()
+        }
+    })
+    // Vue.filter('format', (value, arg) => {
+    //     if (arg == 'yyyy-MM-dd') {
+    //         var ret = ''
+    //         ret += value.getFullYear() + '-' + (value.getMonth() + 1) + '-' + value.getDate()
+    //         return ret
+    //     }
+    // })//这个过滤器不行 需要用到正则表达式
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+            id: '',
+            name: '',
+            flag: false,
+            submitFlag: false,
+            books: []
+        },
+        methods: {
+            handle() {
+                if (this.flag) {
+                    // 编辑
+                    // 根据当前的id更新数组中对应的数据
+                    this.books.some((item) => {
+                        if (item.id == this.id) {
+                            item.name = this.name;
+                            // 完成 更新操作 终止循环
+                            return true
+                        }
+                    })
+                    this.flag = false
+                }
+                else {
+                    // 添加图书
+                    var book = {};
+                    book.id = this.id;
+                    book.name = this.name;
+                    book.date = '';
+                    this.books.push(book);
+                    this.id = this.name = '';
+                }
+                this.id = this.name = '';
+            },
+            change(id) {
+                this.flag = true,
+                    // 禁用表单域
+                    console.log(id)
+                // 根据id 查询出要编辑的数据
+                var book = this.books.filter(function (item) {
+                    return item.id == id
+                })
+                //把获取到的信息填充到表单
+                this.id = book[0].id//数组中某个对象
+                this.name = book[0].name
+            },
+            del(id) {
+                // 根据id 找到索引  
+                // 根据索引直接删除书
+                var index = this.books.findIndex(item =>
+                    item.id == id)
+                this.books.splice(index, 1);//索引和个数
+
+                // 方法2：通过数组的filter进行删除
+                // this.books=this.books.filter(item=>{//替换数组
+                //     item.id!=id; //为啥是不等于：这是过滤求剩下的  因为是删除 要把传来的id不保留
+                // })
+            }
+        },
+        computed: {
+            total() {
+                // 计算图书的总书
+                return this.books.length
+            }
+        },
+        watch: {
+            name(newVal) {
+                // 验证图书名称是否已经存在
+                // some（遍历方法）是验证数组中有没有满足条件的数据 有一条就返回true
+                var flag = this.books.some(item => item.name == newVal);
+                if (flag) {
+                    // 图书存在
+                    this.submitFlag = true
+                }
+                else {
+                    this.submitFlag = false
+                }
+            }
+        },
+        mounted() {
+            // 该生命周期钩子函数被触发的时候，模板已经可以使用
+            // 一般用于获取后台数据，然后把数据填充到模板中
+            let data = [
+                {
+                    id: 1,
+                    name: '三国演义',
+                    date: '2020-07-29'
+                },
+                {
+                    id: 2,
+                    name: '西游记',
+                    date: '2020-07-29'
+                },
+                {
+                    id: 3,
+                    name: 'Js精华',
+                    date: '2020-07-29'
+                },
+            ];
+            this.books=data
+        },
+
+        //数组响应式变化  -->用索引修改的不是响应式的
+        // Vue.set(vm.items,indexOflten,newValue)
+        // vm.$set(vm.items,indexOflten,newValue)
+        // 第一个参数：要处理的数组的名称
+        // 第二个参数：要处理的数组的索引
+        // 第三个参数: 要处理的数组的值
+    })
+</script>
+
+</html>

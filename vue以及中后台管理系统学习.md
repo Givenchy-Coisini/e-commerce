@@ -379,6 +379,7 @@
 
     
 
+
     - 属性绑定
 
     ```js
@@ -1202,3 +1203,198 @@
   ```
 
   
+
+##### 组件化开发
+
+![image-20200729103959731](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729103959731.png)
+
+- 组件注册
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <hello-mwj></hello-mwj>
+    </div>
+</body>
+<script>
+    /**
+     * 组件的命名方式：驼峰式  短横线式
+     * 根组件的话 不能用驼峰式的
+     * **/
+    Vue.component('button-counter', {
+        data() {//data必须是一个函数
+            // 形成闭包的环境，保证每一份组件都拥有一份独立的数据
+            return {
+                count: 0
+            }
+        },
+        template: '<button @click="handle">点击了{{count}}次</button>',
+        // 可以是模板字符串  可以多行看着比较舒服
+        // 组件的模板内容必须是包含单个根元素
+        methods: {
+            handle() {
+                this.count += 2
+            }
+        }
+    })
+    var HelloWordA = {
+        data() {
+            return {
+                msg: 'helloWorld'
+            }
+        },
+        template: '<div>{{msg}}</div>'
+    },
+    var HelloWordB= {
+        data() {
+            return {
+                msg: 'helloWorld'
+            }
+        },
+        template: '<div>{{msg}}</div>'
+    },
+    var HelloWordC = {
+        data() {
+            return {
+                msg: 'helloWorld'
+            }
+        },
+        template: '<div>{{msg}}</div>'
+    },
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+
+        },
+        methods: {
+
+        },
+        components: {//局部组件只能在注册他的父组件中使用
+            'hello-world':HelloWordA,
+            'hello-wass':HelloWordB,
+            'hello-mwj':HelloWordC
+        }
+
+    })
+</script>
+
+</html>
+```
+
+![image-20200729140106254](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729140106254.png)
+
+![image-20200729140157012](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729140157012.png)
+
+- props接受的数据类型：
+
+  > 字符串:String
+  >
+  > 数值：Number
+  >
+  > 布尔值:Blooean
+  >
+  > 数组  对象  Array  Object
+
+- props传递数据原则：单向数据流
+- 子组件通过自定义事件向父组件传递信息  $event 
+- $emit()
+
+![image-20200729141440440](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729141440440.png)
+
+![image-20200729141915958](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729141915958.png)
+
+- 组件插槽
+  -   父组件向子组件传递内容（模板）
+
+![image-20200729143333087](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729143333087.png)
+
+- slot位于子组件的模板中  父组件中的中间还有东西
+
+```js
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <text-alert>有bug</text-alert>
+        <text-alert></text-alert>
+        <base-layout>
+            <p slot="header">标题信息</p>
+            <p>zhuyaoneirong</p>
+            <p slot="footer">dibu信息</p>
+        </base-layout>
+    </div>
+</body>
+<script>
+    Vue.component('text-alert', {
+        template: `
+            <div>
+                <strong>ERROR:</strong>
+                <slot>默认内容</slot>
+                </div>
+            `
+    })
+    Vue.component('base-layout', {
+        template: `
+            <div>
+               <header>
+                <slot name="header"></slot>
+                </header>
+                <main>
+                    <slot></slot>
+                    </main>
+                    <footer>
+                        <slot name="footer"></slot></footer>
+                </div>
+            `
+    })
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+        },
+        methods: {
+
+        }
+
+    })
+</script>
+
+</html>
+```
+
+##### 前后端交互
+
+![image-20200729183243881](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729183243881.png)
+
+![image-20200729183713442](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729183713442.png)
+
+![image-20200729183820235](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729183820235.png)
+
+![image-20200729184017924](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729184017924.png)
+
+- fetch
+
+- axios
+

@@ -1,0 +1,57 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <text-alert>有bug</text-alert>
+        <text-alert></text-alert>
+        <base-layout>
+            <p slot="header">标题信息</p>
+            <p>zhuyaoneirong</p>
+            <p slot="footer">dibu信息</p>
+        </base-layout>
+    </div>
+</body>
+<script>
+    Vue.component('text-alert', {
+        template: `
+            <div>
+                <strong>ERROR:</strong>
+                <slot>默认内容</slot>
+                </div>
+            `
+    })
+    Vue.component('base-layout', {
+        template: `
+            <div>
+               <header>
+                <slot name="header"></slot>
+                </header>
+                <main>
+                    <slot></slot>
+                    </main>
+                    <footer>
+                        <slot name="footer"></slot></footer>
+                </div>
+            `
+    })
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+        },
+        methods: {
+
+        }
+
+    })
+</script>
+
+</html>

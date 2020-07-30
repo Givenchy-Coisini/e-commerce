@@ -1,0 +1,59 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script>
+    /**
+     * 异步效果:
+     * 1.定时任务
+     * 2.Ajax
+     * 3.事件函数
+     * 
+     * 多次异步调用的依赖分析：
+     * 1.多次异步调用的结果顺序不确定
+     * 2.异步调用结果如果存在依赖需要嵌套（回调地狱）
+     * 
+     * promise(承诺)：是一个异步编程的解决方案，从语法上讲promise是一个对象 从他可以获取异步操作的消息
+     * 可以解决回调地狱
+     * 提供了简洁的api
+    */
+    // console.log(typeof Promise)
+
+    //    实例化promise对象 在构造函数中传递函数，该函数用于处理异步任务
+    //    resolve 和reject 两个参数 用于处理成功和失败两种情况   并通过p.then获取处理结果
+    var p = new Promise((resolve, reject) => {
+        //这里用来实现异步任务
+        resolve();//参数都是方法(回调函数)
+        reject();
+    });
+    p.then((ret) => {//形参   resolve  reject中的数据
+        // resolve
+    }, () => {
+        // reject
+    })
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+
+        },
+        methods: {
+
+        }
+
+    })
+</script>
+
+</html>

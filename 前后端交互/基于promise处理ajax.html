@@ -1,0 +1,62 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script>
+    function queryData(url) {
+        var p = new Promise((resolve, reject) => {
+            //这里用来实现异步任务
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState != 4) return
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resolve(xhr.responseText)
+                }else{
+                    reject('服务器错误');
+                }
+            }
+            xhr.open('get', url)
+            xhr.send(null)
+        });
+        return p;//可以和p之前替换一下
+    }
+    queryData('http://localhost:3000/data')
+    .then(data=>{
+        console.log(data)
+    })
+    // 链式调用 解决回调地狱
+    .then(data=>{
+        // then参数中的函数返回值
+        // 返回实例对象   返回的该实例对象会调用下一个then
+
+        // 返回普通值  返回的普通值会直接传递给下一个then  通过then 参数中函数的参数接受该值
+        console.log(data)
+    })
+    // 发送多次ajax请求  上一个的return 的函数(是一个新的promise对象) 就是下一个的调用 data用于接受上一个函数的处理结果
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+
+        },
+        methods: {
+
+        }
+
+    })
+</script>
+
+</html>

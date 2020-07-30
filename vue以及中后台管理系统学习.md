@@ -378,10 +378,13 @@
           >   v-on:keyup.aaa="handle" //aaa也可以直接写成65
 
     
+  
+  
+  
 
 
     - 属性绑定
-
+    
     ```js
     <!DOCTYPE html>
     <html lang="en">
@@ -413,9 +416,9 @@
     
     </html>
     ```
-
+    
     - 双向数据绑定原理
-
+    
     ```js
     <!DOCTYPE html>
     <html lang="en">
@@ -453,9 +456,9 @@
     </body>
     </html>
     ```
-
+    
     - 样式绑定
-
+    
     ```js
     <!DOCTYPE html>
     <html lang="en">
@@ -522,10 +525,11 @@
     </html>
     ```
 
-    
+
+​    
 
     - 分支循环结构
-
+    
     ```js
     <!DOCTYPE html>
     <html lang="en">
@@ -1394,7 +1398,46 @@
 
 ![image-20200729184017924](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729184017924.png)
 
+- Promise用法
+  
+  -  ![image-20200729212211103](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200729212211103.png)
+  
+  ![image-20200730090845339](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730090845339.png)
+  
 - fetch
+
+![image-20200730093959099](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730093959099.png)
+
+![image-20200730094224951](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730094224951.png)
+
+![image-20200730095549130](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730095549130.png)
+
+![image-20200730095829051](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730095829051.png)
 
 - axios
 
+![image-20200730192016879](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730192016879.png)
+
+![image-20200730192243047](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730192243047.png)
+
+![image-20200730192307359](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730192307359.png)
+
+![image-20200730192323334](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730192323334.png)
+
+![image-20200730192448070](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730192448070.png)
+
+- 前端如果用params的话，后端用的是query 
+
+![image-20200730192713033](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730192713033.png)
+
+![image-20200730192813474](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730192813474.png)
+
+![image-20200730200529120](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730200529120.png)
+
+![image-20200730201202919](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730201202919.png)
+
+![image-20200730203410121](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730203410121.png)
+
+##### 前端路由学习
+
+- ![image-20200730204423263](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730204423263.png)

@@ -1,0 +1,80 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script>
+    /*
+    *fetch:基本特性:更加简单的数据获取方式,功能更加强大,更灵活,可以看成是xhr的升级版
+    *基于Promise实现
+    *结构: fetch(url).then(fn2)
+    *               .then(fn3)
+    *
+    *响应的结果  json()  字符串转化为json对象
+    *
+    *axios用法：可以拦截请求和响应   自动转化为json数据   支持promise
+    */
+    fetch('http://localhost:3000/fdata').then(data => {
+        data.text()
+        // text()属于fetch的一部分，返回一个promise实例对象  作用：用于获取后台返回的数据
+    }).then(data => {
+        console.log(data)
+    })
+    axios.get('/adata').then(ret => {
+        // data属性是固定的  用于获取后台的实际数据
+        console.log(ret.data)
+    })
+    //axios 拦截器
+    // 请求拦截器：在请求发出之前设置一些信息
+    axios.interceptors.request.use(function (config) {
+        console.log(config.url);
+        config.headers.mytoken = 'nihao';
+        return config;
+    }, function (err) {
+        console.log(err)
+    })
+    axios.get('http://localhost:3000/adata').then(res => {
+        console.log(res.data)
+    })
+    // 响应拦截器
+    // 在获取数据之前对数据进行一些加工处理
+
+    axios.interceptors.response.use(function (res) {
+        // console.log(res)
+        var data =res.data
+        return data;
+    }, function (err) {
+        console.log(err)
+    })
+    axios.get('http://localhost:3000/adata').then(data => {
+        console.log(data)
+    })
+
+    axios.default.baseURL = 'http://localhost:3000/';//基准地址
+    axios.default.headers['mytoken'] = 'hello'//请求头
+
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+
+        },
+        methods: {
+
+        }
+
+    })
+</script>
+
+</html>

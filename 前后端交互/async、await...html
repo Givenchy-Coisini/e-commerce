@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+
+        /**
+        *async await
+        *  es7引入的新的语法  async用于函数上(async的返回值是Promise实例对象)
+        *  await关键字用于async函数当中(await可以得到异步的结果)
+        */
+        async function queryData(){//async返回值也是一个promise的实例对象
+           var res = await axios.get('adata')//await后面是一个Promise
+           var ret = await axios.get('async2?info='+res.data)
+           return ret.data
+        }
+        queryData().then(data=>console.log(data))
+
+
+        const vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods: {
+                
+            }
+        })
+    </script>
+</body>
+</html>

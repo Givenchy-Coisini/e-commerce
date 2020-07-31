@@ -1625,3 +1625,19 @@
 ![image-20200731192812410](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731192812410.png)
 
 ![image-20200731193413898](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731193413898.png)
+
+##### vue-cli创建项目
+
+![image-20200731195056089](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731195056089.png)
+
+![image-20200731195500925](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731195500925.png)
+
+![image-20200731203643810](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731203643810.png)
+
+![image-20200731203728469](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731203728469.png)
+
+##### element-ui
+
+![image-20200731204249461](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731204249461.png)
+
+![image-20200731205534409](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731205534409.png)

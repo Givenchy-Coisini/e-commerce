@@ -381,6 +381,7 @@
   
   
   
+  
 
 
     - 属性绑定
@@ -1441,3 +1442,142 @@
 ##### 前端路由学习
 
 - ![image-20200730204423263](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730204423263.png)
+
+![image-20200730205515210](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730205515210.png)
+
+![image-20200730205645464](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730205645464.png)
+
+![image-20200730205712808](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730205712808.png)
+
+![image-20200730234207420](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730234207420.png)
+
+![image-20200730234540780](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730234540780.png)
+
+![image-20200730234801011](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730234801011.png)
+
+![image-20200730234948974](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730234948974.png)
+
+![image-20200730235001376](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730235001376.png)
+
+![image-20200730235402530](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200730235402530.png)
+
+- 路由重定向
+- ![image-20200731001301758](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731001301758.png)
+
+![image-20200731001830525](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731001830525.png)
+
+```Vue
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/user">User</router-link>
+        <router-link to="/register">Register</router-link>
+        <!-- 路由填充位 -->
+        <router-view></router-view>
+    </div>
+</body>
+<script>
+    /*
+    路由使用的基本步骤：
+
+    1.引入相关的库文件
+    2.添加路由链接
+    3.添加路由填充位
+    4.定义路由组件
+    5.配置路由规则并创建路由实例
+    6.把路由挂载到Vue根实例中
+ 
+    */
+    const User = {
+        template: "<h1>user组件</h1>"
+    }
+    const Register = {
+        template: `
+        <div>
+            <h1>Register组件</h1>
+            <hr/>
+            <router-link to="/register/tab1">Tab1</router-link>
+            <router-link to="/register/tab2">Tab2</router-link>
+           <!-- 子路由填充位置-->
+            <router-view></router-view>
+        </div>
+       `
+    }
+    const Tab1={
+        template:'<h3>Tab1</h3>'
+    }
+
+    const Tab2={
+        template:'<h3>Tab2</h3>'
+    }
+    // 创建路由实例对象
+    var router = new VueRouter({
+        routes: [{
+            path: '/',
+            redirect: '/user'//路由重定向
+        }, {
+            path: '/user',
+            component: User
+        }, {
+            path: '/register',
+            component: Register,
+            children: [{//子路由
+                path: '/register/tab1',
+                component: Tab1
+            }, {
+                path: '/register/tab2',
+                component: Tab2
+            }]
+        }]
+    })
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+
+        },
+        methods: {
+
+        },
+        // 挂载实例对象
+        router
+
+    })
+</script>
+
+</html>
+```
+
+![image-20200731083630347](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731083630347.png)
+
+![image-20200731084628744](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731084628744.png)
+
+![image-20200731084639419](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731084639419.png)
+
+![image-20200731085013795](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731085013795.png)
+
+![image-20200731093524074](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731093524074.png)
+
+![image-20200731093532538](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731093532538.png)
+
+![image-20200731094219823](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731094219823.png)
+
+- 路由案例
+
+  ![image-20200731112744110](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731112744110.png)
+
+##### 前端工程化
+
+![image-20200731125103446](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731125103446.png)
+
+![image-20200731125119108](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731125119108.png)

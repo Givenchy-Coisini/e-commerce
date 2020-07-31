@@ -1,0 +1,118 @@
+<!-- 第三集 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 给全局挂载了vue构造函数和vuerouter构造函数 -->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/user/1">User1</router-link>
+        <router-link :to="{name:'user',params:{id:2}}">User2</router-link>
+        <router-link to="/register">Register</router-link>
+        <!-- 路由填充位 -->
+        <router-view></router-view>
+    </div>
+</body>
+<script>
+    /*
+    路由使用的基本步骤：
+
+    1.引入相关的库文件
+    2.添加路由链接
+    3.添加路由填充位
+    4.定义路由组件
+    5.配置路由规则并创建路由实例
+    6.把路由挂载到Vue根实例中
+ 
+    */
+    const User = {
+        props: ['id', 'uname', 'age'],//使用props接受路由参数
+        // 路由组件中通过$route.params来获取路由参数
+        // template: `<div>User---用户id为:{{$route.params.id}}</div>` 没有用props的时候
+        template: `<div>
+        User---用户id为:{{id}}---姓名为:{{uname}}---年龄为:{{age}}
+        <button @click="goRegister">跳转到注册页面</button>
+        </div>`,
+        methods: {//编程式导航
+            goRegister() {
+                this.$router.push('/register')
+            }
+        },
+    }
+    const Register = {
+        template: `
+        <div>
+            <h1>Register组件</h1>
+            <hr/>
+            <router-link to="/register/tab1">Tab1</router-link>
+            <router-link to="/register/tab2">Tab2</router-link>
+           <!-- 子路由填充位置-->
+            <router-view></router-view>
+            <button @click="goBack">后退</button>
+        </div>
+       `,
+        methods: {
+            goBack() {
+                this.$router.go(-1)//前进和后退
+            }
+        },
+    }
+    const Tab1 = {
+        template: '<h3>Tab1</h3>'
+    }
+
+    const Tab2 = {
+        template: '<h3>Tab2</h3>'
+    }
+    // 创建路由实例对象
+    var router = new VueRouter({
+        routes: [{
+            path: '/',
+            redirect: '/user'//路由重定向
+        }, {
+            name: 'user',//命名路由
+            path: '/user/:id',//动态路由
+            component: User,
+            // props:true//组件传参  布尔值
+            // props:{  对象值
+            //     uname:'lisi',
+            //     age:20
+            // }
+
+
+            //函数形式   静态动态都可以
+            props: route => ({ uname: 'lisi', age: 20, id: route.params.id })
+        }, {
+            path: '/register',
+            component: Register,
+            children: [{//子路由
+                path: '/register/tab1',
+                component: Tab1
+            }, {
+                path: '/register/tab2',
+                component: Tab2
+            }]
+        }]
+    })
+    const vm = new Vue({
+        el: '#app',//挂载到id为app上 元素的挂载位置 把数据关联到页面中的某个标签里
+        data: {//模型数据 对象
+
+        },
+        methods: {
+
+        },
+        // 挂载实例对象
+        router
+
+    })
+</script>
+
+</html>

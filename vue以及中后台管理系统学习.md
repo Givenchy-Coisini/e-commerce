@@ -1641,3 +1641,7 @@
 ![image-20200731204249461](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731204249461.png)
 
 ![image-20200731205534409](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731205534409.png)
+
+### 2.项目电商后台管理
+
+![image-20200731232451121](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731232451121.png)

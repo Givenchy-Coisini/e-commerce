@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /**模块化规范
+        *传统开发模式的主要问题
+        *1.命名冲突
+        *2.文件依赖
+        *
+        *通过模块化解决上述问题：
+        *模块化就是把单独的一个功能封装到一个模块文件中，模块之间相互隔离，但是可以通过特定的接口公开内部成员
+        *也可以依赖别的模块
+        *模块化开发的好处：方便代码的重用，从而提升开发效率，并且方便后期的维护
+        *浏览器端：AMD  CMD
+        *服务器端：CommonJS   模块分为单文件模块和包
+        *模块成员导出：moudule.exports  和exports
+        *模块化成员导入  require
+        *大一统的es6模块化规范  ：在语言层面上定义了es6模块化规范，是浏览器和服务器短通用的模块化开发规范
+        *每个js文件都是一个独立的模块 
+        *导入模块化成员使用import关键字
+        *导出模块成员使用export关键字  export.default {//默认导出
+            导出成员
+        }   import  xxx  from xxx
+        *只允许使用一次export.default   export按需导出可以多次使用
+        *
+        *按需导入 和按需导出    export let s1=10;
+        *按需导入语法 import {s1} from '模块标识符'
+        *按需导出 export function say(){
+            console.log('oooo')
+        }
+
+        import m1 ,{s1,s2} from  xxx按需导入和默认导入一起可以使用
+        */
+    </script>
+</body>
+</html>

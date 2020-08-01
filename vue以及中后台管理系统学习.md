@@ -384,6 +384,7 @@
   
   
   
+  
 
 
     - 属性绑定
@@ -1648,3 +1649,9 @@
 ![image-20200731232451121](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731232451121.png)
 
 ![image-20200801110501106](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801110501106.png)
+
+![image-20200801120014295](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801120014295.png)
+
+![image-20200801220050738](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801220050738.png)
+
+![image-20200801220940209](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801220940209.png)

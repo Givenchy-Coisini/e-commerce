@@ -383,6 +383,7 @@
   
   
   
+  
 
 
     - 属性绑定
@@ -1645,3 +1646,5 @@
 ### 2.项目电商后台管理
 
 ![image-20200731232451121](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731232451121.png)
+
+![image-20200801110501106](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801110501106.png)

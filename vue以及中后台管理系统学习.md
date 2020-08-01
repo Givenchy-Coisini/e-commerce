@@ -385,6 +385,7 @@
   
   
   
+  
 
 
     - 属性绑定
@@ -1648,6 +1649,8 @@
 
 ![image-20200731232451121](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200731232451121.png)
 
+##### 1.登录
+
 ![image-20200801110501106](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801110501106.png)
 
 ![image-20200801120014295](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801120014295.png)
@@ -1655,3 +1658,15 @@
 ![image-20200801220050738](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801220050738.png)
 
 ![image-20200801220940209](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801220940209.png)
+
+![image-20200801222709898](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801222709898.png)
+
+![image-20200801222738972](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801222738972.png)
+
+![image-20200801222753656](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200801222753656.png)
+
+![image-20200802004604054](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200802004604054.png)
+
+##### 2.首页
+
+- 左侧菜单项 用一级菜单和二级菜单进行两遍的v-for循环列出来

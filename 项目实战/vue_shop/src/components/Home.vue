@@ -1,9 +1,12 @@
 <template>
   <el-container class="home-container">
-    <el-aside width="200px">
-      <img src="../assets/logo_1.jpg" alt />
+    <el-aside :width="isCollapse?'64px':'200px'">
+      <div class="image_1">
+         <img  src="../assets/logo_1.jpg" :class="isCollapse?'active':''" alt />
+      </div>
+      <div class="toggle-button" @click="toggleCollapse">{{isCollapse?'展开':'折叠'}}</div>
       <!-- 侧边栏菜单区域 -->
-      <el-menu unique-opened background-color="#0a143d" text-color="#fff" active-text-color="#409EFF">
+      <el-menu :default-active="activePath" :router="true" :collapse-transition="false" :collapse="isCollapse" unique-opened background-color="#0a143d" text-color="#fff" active-text-color="#409EFF">
         <!-- <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -67,7 +70,7 @@
             <span>{{item.authName}}</span>
           </template>
           <!-- 二级菜单 -->
-          <el-menu-item :index="subItem.id+''" v-for="subItem in item.children" :key="subItem.id">
+          <el-menu-item @click="saveNav('/'+subItem.path)" :index="'/'+subItem.path" v-for="subItem in item.children" :key="subItem.id">
             <template slot="title">
               <!-- 图标 -->
               <i class="el-icon-menu"></i>
@@ -83,7 +86,10 @@
         <span>智箱云路后台管理系统</span>
         <el-button type="info" @click="loginOut" class="bts">退出登录</el-button>
       </el-header>
-      <el-main>Main</el-main>
+      <el-main>
+        <!-- 路由占位符 -->
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -99,13 +105,20 @@ export default {
         101: 'iconfont icon-shangpin',
         102: 'iconfont icon-danju',
         145: 'iconfont icon-baobiao'
-      }
+      },
+      isCollapse: false,
+      activePath: ''
     }
   },
   created() {
     this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
+    toggleCollapse() {
+      // 点击按钮 切换与展开
+      this.isCollapse = !this.isCollapse
+    },
     loginOut() {
       window.sessionStorage.clear()
       this.$router.push('/login')
@@ -116,6 +129,11 @@ export default {
       if (res.meta.status !== 200) return res.$message.error(res.meta.msg)
       this.menuList = res.data
       console.log(res)
+    },
+    saveNav(activePath) {
+      // 保存链接的激活状态
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     }
   }
 }
@@ -144,10 +162,16 @@ export default {
   .el-menu {
   border-right:none
   }
-  img {
+  .image_1 img {
     height: 66.36px;
     width: 66.36px;
     margin: 20px 66.36px;
+    border-radius: 50%;
+  }
+   .image_1  .active {
+    height: 45px;
+    width: 40px;
+    margin: 32px 8px;
     border-radius: 50%;
   }
 }
@@ -159,5 +183,13 @@ export default {
 }
 .iconfont {
   margin-right: 10px;
+}
+.toggle-button {
+  background-color: #4A5064;
+  font-size: 10px;
+  color: #ffffff;
+  line-height:24px;
+  text-align: center;
+  cursor: pointer;
 }
 </style>

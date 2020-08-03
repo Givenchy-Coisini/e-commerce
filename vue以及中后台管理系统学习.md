@@ -386,6 +386,7 @@
   
   
   
+  
 
 
     - 属性绑定
@@ -1670,3 +1671,10 @@
 ##### 2.首页
 
 - 左侧菜单项 用一级菜单和二级菜单进行两遍的v-for循环列出来
+
+![image-20200803103332386](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200803103332386.png)
+
+![image-20200803104801136](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200803104801136.png)
+
+- git checkout 切换分支
+- git merge user 合并分支

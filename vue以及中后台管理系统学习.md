@@ -387,7 +387,6 @@
   
   
   
-  
 
 
     - 属性绑定
@@ -1675,4 +1674,7 @@
 
 ![image-20200803103332386](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200803103332386.png)
 
-![image-20200803104125745](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200803104125745.png)
+![image-20200803104801136](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200803104801136.png)
+
+- git checkout  master  切换master分支
+- git merge user 合并user分支

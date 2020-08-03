@@ -170,7 +170,7 @@ export default {
   }
    .image_1  .active {
     height: 45px;
-    width: 40px;
+    width: 45px;
     margin: 32px 8px;
     border-radius: 50%;
   }

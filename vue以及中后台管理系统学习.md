@@ -1676,5 +1676,14 @@
 
 ![image-20200803104801136](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200803104801136.png)
 
+<<<<<<< HEAD
 - git checkout  master  切换master分支
 - git merge user 合并user分支
+=======
+
+
+- git checkout  master  切换master分支
+- git merge user 合并user分支
+
+![image-20200803121354797](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200803121354797.png)
+>>>>>>> rights

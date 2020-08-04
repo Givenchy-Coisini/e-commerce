@@ -388,6 +388,7 @@
   
   
   
+  
 
 
     - 属性绑定
@@ -1693,7 +1694,7 @@
 - 如果git上没有该分支   就需要git push -u origin
 - 如果git上有该分支   就需要git push即可
 
-
+![image-20200804165822158](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200804165822158.png)
 
 ### 3.Echarts学习
 

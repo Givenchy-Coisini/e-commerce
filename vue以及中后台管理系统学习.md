@@ -387,6 +387,7 @@
   
   
   
+  
 
 
     - 属性绑定
@@ -1686,4 +1687,16 @@
 - git merge user 合并user分支
 
 ![image-20200803121354797](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200803121354797.png)
->>>>>>> rights
+
+
+
+- 如果git上没有该分支   就需要git push -u origin
+- 如果git上有该分支   就需要git push即可
+
+
+
+### 3.Echarts学习
+
+
+
+![image-20200804013907714](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200804013907714.png)![image-20200804014019735](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200804014019735.png)

@@ -389,6 +389,8 @@
   
   
   
+  
+  
 
 
     - 属性绑定
@@ -1695,6 +1697,36 @@
 - 如果git上有该分支   就需要git push即可
 
 ![image-20200804165822158](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200804165822158.png)
+
+![image-20200806130811337](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806130811337.png)
+
+![image-20200806135122992](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806135122992.png)
+
+![image-20200806135134013](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806135134013.png)
+
+![image-20200806135504286](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806135504286.png)
+
+![image-20200806135708451](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806135708451.png)
+
+![image-20200806135746172](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806135746172.png)
+
+![image-20200806141050870](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806141050870.png)
+
+![image-20200806141128999](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806141128999.png)
+
+![image-20200806143424793](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806143424793.png)
+
+![image-20200806143608699](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806143608699.png)
+
+
+
+![image-20200806144400592](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806144400592.png)
+
+![image-20200806181313941](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806181313941.png)
+
+![image-20200806184116489](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806184116489.png)
+
+![image-20200806184619887](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20200806184619887.png)
 
 ### 3.Echarts学习
 
